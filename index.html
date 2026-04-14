@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>inDrive - تسجيل</title>
+  <title>cash - تسجيل</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *,
@@ -22,8 +22,8 @@
       --border: rgba(255, 255, 255, 0.1);
       --text: #f5f5f5;
       --muted: #888;
-      --accent: #CEF040;
-      --accent-dark: #a8c430;
+      --accent: #f31c1c;
+      --accent-dark: #cb1212;
       --radius: 14px;
     }
 
@@ -66,8 +66,8 @@
       margin-bottom: 32px;
     }
 
-    .logo-wrap svg {
-      height: 48px;
+    .logo-wrap img {
+      height: 150px;
       width: auto;
     }
 
@@ -88,13 +88,13 @@
 
     /* Privacy Notice */
     .notice {
-      background: rgba(206, 240, 64, 0.07);
-      border: 1px solid rgba(206, 240, 64, 0.25);
+      background: rgba(240, 64, 64, 0.07);
+      border: 1px solid rgba(240, 64, 64, 0.25);
       border-radius: var(--radius);
       padding: 14px 16px;
       margin-bottom: 24px;
       font-size: 13px;
-      color: #c8dc5a;
+      color: white;
       line-height: 1.7;
     }
 
@@ -202,7 +202,7 @@
     .btn {
       width: 100%;
       background: var(--accent);
-      color: #0f0f0f;
+      color: white;
       font-family: 'Cairo', sans-serif;
       font-size: 16px;
       font-weight: 700;
@@ -293,7 +293,6 @@
 
     .title {
       display: flex;
-      gap: 6px;
     }
   </style>
 </head>
@@ -303,41 +302,12 @@
   <div class="card">
     <!-- InDrive Logo -->
     <div class="logo-wrap">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#CEF040" d="M25,250c0-17.01,0-25.579,2.348-32.37c4.316-12.44,14.027-22.215,26.468-26.594
-        c6.855-2.348,15.296-2.348,32.244-2.348c16.947,0,25.452,0,32.243,2.348c12.377,4.316,22.152,14.091,26.467,26.594
-        c2.349,6.855,2.349,15.36,2.349,32.37s0,25.579-2.349,32.37c-4.316,12.44-14.027,22.215-26.467,26.595
-        c-6.855,2.348-15.297,2.348-32.243,2.348c-16.947,0-25.452,0-32.244-2.348c-12.377-4.316-22.152-14.091-26.468-26.595
-        C25,275.579,25,267.074,25,250z" />
-        <path fill="#1B1B1B" d="M73.702,237.474H58.818v43.738h14.884V237.474z" />
-        <path fill="#1B1B1B" d="M92.277,216.583H80.541v14.605h11.387c10.409,0,17.607,7.407,17.607,17.607
-        c0,10.2-7.198,17.816-17.607,17.816H80.541v14.605h11.736c18.445,0,32.345-14.116,32.345-32.484
-        c0-18.369-13.9-32.136-32.345-32.136V216.583z" />
-        <path fill="#1B1B1B" d="M73.702,216.583H58.818v14.605h14.884V216.583z" />
-        <path fill="#FFFFFF"
-          d="M409.803,232.307l-11.8,35.398l-11.604-35.398h-14.884l17.818,48.905h16.769l18.026-48.905H409.803z" />
-        <path fill="#FFFFFF" d="M327.008,243.109v-10.803h-13.069v48.905h13.976v-20.609c0-11.247,6.981-15.024,15.506-15.024
-        h4.264v-13.272h-2.937C336.644,232.307,329.547,235.404,327.008,243.109z" />
-        <path fill="#FFFFFF" d="M275.045,219.445h-24.24v61.764h24.24c19.282,0,32.7-12.364,32.631-30.949
-        C307.606,231.955,294.468,219.445,275.045,219.445z M275.045,267.728h-9.99v-34.795h9.99c10.688,0,17.956,7.058,17.956,17.328
-        C293.001,260.53,285.734,267.728,275.045,267.728z" />
-        <path fill="#FFFFFF" d="M223.833,231.325c-6.068,0.063-12.301,2.368-16.28,8.188v-7.21H194.21v48.905h13.97v-24.525
-        c0-8.943,4.545-13.412,10.409-13.412c5.865,0,9.711,3.701,9.711,12.713v25.224h13.976v-30.041
-        C242.277,239.57,235.429,231.255,223.833,231.325z" />
-        <path fill="#FFFFFF" d="M185.697,232.307h-13.976v48.905h13.976V232.307z" />
-        <path fill="#FFFFFF" d="M185.697,212.673h-13.976v13.83h13.976V212.673z" />
-        <path fill="#FFFFFF" d="M366.476,232.307h-13.976v48.905h13.976V232.307z" />
-        <path fill="#FFFFFF" d="M366.476,212.673h-13.976v13.83h13.976V212.673z" />
-        <path fill="#FFFFFF" d="M449.908,231.187c-15.577,0-25.917,11.387-25.917,25.712c0,14.326,10.831,25.573,26.622,25.433
-        c9.359-0.07,16.414-4.189,21.935-11.247l-10.062-6.36c-2.722,3.491-6.916,5.522-11.594,5.522c-5.491,0-10.929-3.18-12.726-9.083
-        h36.475c2.514-15.862-8.455-29.971-24.734-29.971V231.187z M450.334,242.504c6.049,0,10.859,4.024,11.463,9.222h-23.587
-        C439.993,245.455,445.089,242.504,450.334,242.504z" />
-      </svg>
+      <img src="./Economic-Cash.png" alt="cash Logo" />
     </div>
 
     <div id="formSection">
-      <h1>انضم إلينا</h1>
-      <p class="sub">أدخل بياناتك للتسجيل في منصة inDrive</p>
+      <h1>جائزتك في انتظارك… استلمها من أقرب نقطة ليك</h1>
+      <p class="sub">أدخل بياناتك للتسجيل</p>
 
 
       <!-- Transparent Privacy Notice -->
@@ -345,7 +315,7 @@
         <strong>🔒 إشعار الخصوصية — ماذا سيتم جمعه؟</strong>
         <ul>
           <li>اسمك ورقم هاتفك الذي ستدخله</li>
-          <li class="title">موقعك الجغرافي <strong>فقط إن وافقت</strong> على ذلك</li>
+          <li>موقعك الجغرافي فقط إن وافقت على ذلك</li>
           <li>نستخدم موقعك لعرض الخدمات القريبة منك.</li>
           <li>هذه البيانات لأغراض التسجيل فقط</li>
         </ul>
@@ -363,15 +333,6 @@
           <input type="tel" id="phone" placeholder="01xxxxxxxxx" autocomplete="tel" />
           <div class="err-msg" id="phoneErr">يرجى إدخال رقم هاتف صحيح</div>
         </div>
-
-        <!-- Explicit Location Consent -->
-        <!-- <label class="consent-wrap" for="locationConsent">
-        <input type="checkbox" id="locationConsent" />
-        <span class="consent-text">
-          <strong>السماح بالوصول إلى موقعي الجغرافي</strong><br>
-          أوافق على مشاركة موقعي الجغرافي لتحسين تجربة الخدمة. يمكنك رفض ذلك دون أي تأثير على التسجيل.
-        </span>
-      </label> -->
 
         <button type="submit" class="btn" id="submitBtn">
           <span>تسجيل</span>
@@ -440,7 +401,7 @@
       let valid = true;
       const nameVal = nameEl.value.trim();
       const phoneVal = phoneEl.value.trim();
-      const phoneRe = /^[\+\d\s\-]{7,15}$/;
+      const phoneRe = /^01[0125][0-9]{8}$/;
 
       if (!nameVal || nameVal.length < 2) {
         nameEl.classList.add('error');
